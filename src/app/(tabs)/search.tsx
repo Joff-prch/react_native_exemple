@@ -1,30 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { FlatList, TextInput } from 'react-native'
+import { Text, View } from '@/src/components/Themed'
+import TrackListItem from '@/src/components/TrackListItem'
+import { tracks } from '@/assets/data/tracks'
+import { Track } from '@/src/types'
+import { Ionicons } from '@expo/vector-icons'
+import { useState } from 'react'
 
-import EditScreenInfo from '@/src/components/EditScreenInfo'
+export default function SearchScreen() {
+  const [query, setQuery] = useState('')
 
-export default function SeachScreen() {
+  const renderItem = ({ item }: { item: Track }) => <TrackListItem track={item} />
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} />
-      <EditScreenInfo path='app/(tabs)/two.tsx' />
-    </View>
+    <SafeAreaView className='flex-1'>
+      <View className='flex-row items-center p-2'>
+        {/* Header */}
+        <Ionicons name='search' size={20} color='gray' />
+        <TextInput
+          value={query}
+          onChangeText={setQuery}
+          className='flex-1 bg-zinc-900 p-1.5 mx-2 rounded text-white'
+          placeholder='Que voulez-vous écouter ?'
+        />
+        <Text onPress={() => setQuery('')}>Annuler</Text>
+      </View>
+      <FlatList data={tracks} renderItem={renderItem} />
+    </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-})

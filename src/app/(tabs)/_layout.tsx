@@ -2,10 +2,13 @@ import React from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { Link, Tabs } from 'expo-router'
 import { Pressable } from 'react-native'
+import { BottomTabBar } from '@react-navigation/bottom-tabs'
 
 import Colors from '@/src/constants/Colors'
 import { useColorScheme } from '@/src/components/useColorScheme'
 import { useClientOnlyValue } from '@/src/components/useClientOnlyValue'
+import { View } from '@/src/components/Themed'
+import Player from '@/src/components/Player'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
@@ -17,6 +20,12 @@ export default function TabLayout() {
 
   return (
     <Tabs
+      tabBar={(props) => (
+        <View>
+          <Player />
+          <BottomTabBar {...props} />
+        </View>
+      )}
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         // Disable the static render of the header on web
@@ -35,7 +44,7 @@ export default function TabLayout() {
                   <Ionicons
                     name='information-circle'
                     size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
+                    color={Colors[colorScheme ?? 'light'].tint}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
