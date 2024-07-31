@@ -3,7 +3,6 @@ import { View } from '@/src/components/Themed'
 import { tracks } from '@/assets/data/tracks'
 import TrackListItem from '@/src/components/TrackListItem'
 import { Track } from '@/src/types'
-import Player from '@/src/components/Player'
 
 export default function HomeScreen() {
   const renderItem = ({ item }: { item: Track }) => <TrackListItem track={item} />

@@ -8,7 +8,7 @@ import Colors from '@/src/constants/Colors'
 import { useColorScheme } from '@/src/components/useColorScheme'
 import { useClientOnlyValue } from '@/src/components/useClientOnlyValue'
 import { View } from '@/src/components/Themed'
-import Player from '@/src/components/Player'
+import Player from '@/src/features/player/Player'
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
